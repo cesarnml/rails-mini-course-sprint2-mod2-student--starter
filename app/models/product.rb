@@ -1,7 +1,6 @@
 class Product < ApplicationRecord
   def available?
-    puts inventory
-    inventory.postive?
+    inventory.positive?
   end
 
   def reduce_inventory

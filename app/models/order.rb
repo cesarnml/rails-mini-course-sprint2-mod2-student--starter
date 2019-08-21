@@ -9,14 +9,6 @@ class Order < ApplicationRecord
   end
 
   def ship
-    if shippable?
-      if update(status: "shipped")
-        true
-      else
-        false
-      end
-    else
-      false
-    end
+    shippable? && update(status: "shipped")
   end
 end

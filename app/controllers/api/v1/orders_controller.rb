@@ -19,7 +19,7 @@ module Api
 
       def create
         @order = Order.new(customer_id: params[:customer_id], status: 'pending')
-
+``
         if @order.save
           render json: @order, status: :created, location: api_v1_order_url(@order)
         else
