@@ -33,10 +33,10 @@ module Api
           if OrderProcessor.new(@order).ship
             render json: @order, status: :ok, location: api_v1_order_url(@order)
           else
-            render json: { message: 'There was a problem shipping your order.' }, status: :unprocessable_entity
+            render json: { message: "There was a problem shipping your order." }, status: :unprocessable_entity
           end
         else
-          render json: { message: 'There was a problem shipping your order.' }, status: :bad_request
+          render json: { message: "There was a problem shipping your order." }, status: :bad_request
         end
       end
     end

@@ -5,12 +5,12 @@ class Order < ApplicationRecord
   end
 
   def shippable?
-    !(OrderProduct.where(order_id: id).blank? || status == 'shipped')
+    !(OrderProduct.where(order_id: id).blank? || status == "shipped")
   end
 
   def ship
     if shippable?
-      if update(status: 'shipped')
+      if update(status: "shipped")
         true
       else
         false
