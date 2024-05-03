@@ -40,26 +40,26 @@ module Api
       end
 
       private
+        def customer_params
+          params.require(:customer).permit(:email)
+        end
 
-      def customer_params
-        params.require(:customer).permit(:email)
-      end
+        def format_customer(customer)
+          # this is a guard clause to prevent `orders` calls until we write the orders association
 
-      def format_customer(customer)
-        # this is a guard clause to prevent `orders` calls until we write the orders association
-        return customer unless customer.respond_to?(:orders)
+          return customer unless customer.respond_to?(:orders)
 
-        {
-          id: customer.id,
-          email: customer.email,
-          orders: customer.orders.map do
-            {
-              id: order.id,
-              status: order.status,
-            }
-          end
-        }
-      end
+          {
+            id: customer.id,
+            email: customer.email,
+            orders: customer.orders.map do
+              {
+                id: order.id,
+                status: order.status,
+              }
+            end
+          }
+        end
     end
   end
 end
